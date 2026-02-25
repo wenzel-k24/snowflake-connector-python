@@ -50,10 +50,10 @@ timestamps {
         stage('Test') {
             try {
             def commit_hash = "main" // default which we want to override
-            def bptp_tag = "bptp-stable"
+            def bptp_tag = "temptest-deployed"
             def response = authenticatedGithubCall("https://api.github.com/repos/snowflakedb/snowflake/git/ref/tags/${bptp_tag}")
             commit_hash = response.object.sha
-            // Append the bptp-stable commit sha to params
+            // Append the temptest-deployed commit sha to params
             params += [string(name: 'svn_revision', value: commit_hash)]
             } catch(Exception e) {
             println("Exception computing commit hash from: ${response}")
